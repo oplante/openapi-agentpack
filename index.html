@@ -3,62 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SpecPack — OpenAPI → agent pack</title>
-  <meta name="description" content="SpecPack (openapi-agentpack): OpenAPI 3.x → agent-ready ZIP. Free static demo — runs entirely in your browser." />
+  <title>SpecPack — OpenAPI → agent-ready pack</title>
+  <meta name="description" content="SpecPack (openapi-agentpack): OpenAPI 3.x → agent-ready ZIP in one click. Free static demo — browser-only, no upload." />
   <meta name="generator" content="SpecPack openapi-agentpack" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="wrap">
-    <div class="brand">
-      <div class="logo" aria-hidden="true">SP</div>
-      <div>
-        <h1>SpecPack</h1>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="prompt" aria-hidden="true">$</span>
+        <span class="brand-name">SpecPack</span>
+        <span class="brand-slug">openapi-agentpack</span>
       </div>
-    </div>
-    <p class="lead"><strong>OpenAPI → agent pack.</strong> Make your API agent-ready in one click — entirely in your browser.</p>
-    <div class="slug">Product slug: <code>openapi-agentpack</code> · static free demo (no server)</div>
+      <div class="topbar-meta">v0.1 · free demo</div>
+    </header>
 
-    <div class="card">
-      <div id="drop" class="drop" tabindex="0" role="button" aria-label="Drop OpenAPI file here">
-        <strong>Drop OpenAPI JSON or YAML here</strong>
-        <span>or use the file picker / paste below</span>
+    <main class="main">
+      <section class="hero">
+        <h1 class="claim">OpenAPI → agent-ready pack in one click</h1>
+        <p class="trust">browser-only · no upload to our servers · free demo</p>
+      </section>
+
+      <div class="layout">
+        <section class="panel hero-panel" aria-label="Generate">
+          <div class="panel-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="chrome-title">generate — drop OpenAPI</span>
+          </div>
+
+          <div id="drop" class="drop phosphor" tabindex="0" role="button" aria-label="Drop OpenAPI file here">
+            <div class="drop-glyph" aria-hidden="true">&gt;_</div>
+            <strong>Drop OpenAPI JSON or YAML here</strong>
+            <span>or choose a file / paste below</span>
+          </div>
+
+          <div class="row">
+            <label class="file-btn">Choose file
+              <input id="file" type="file" accept=".json,.yaml,.yml,application/json,text/yaml,text/x-yaml" />
+            </label>
+            <button id="generate" type="button" disabled>Generate pack</button>
+            <span id="chosen" class="hint chosen"></span>
+          </div>
+
+          <details id="pasteDetails" class="paste-block">
+            <summary>Or paste OpenAPI JSON / YAML</summary>
+            <textarea id="paste" placeholder='{"openapi":"3.0.3","info":{"title":"…"}, …}' spellcheck="false"></textarea>
+          </details>
+
+          <div class="caps" aria-label="Hard caps">
+            <span class="cap">≤ 200 KiB</span>
+            <span class="cap">≤ 80 operations</span>
+            <span class="cap">≤ 100 paths</span>
+            <span class="cap">OpenAPI 3.x</span>
+          </div>
+
+          <div id="error" class="msg error" role="alert"></div>
+          <div id="success" class="msg success" role="status"></div>
+        </section>
+
+        <aside class="panel tree-panel" aria-label="Pack contents preview">
+          <div class="panel-chrome">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="chrome-title">pack/ — what’s in the ZIP</span>
+          </div>
+          <pre class="file-tree phosphor" id="packTree"><code><span class="tree-dir">pack/</span>
+  <span class="tree-file">README.md</span>
+  <span class="tree-file">llms.txt</span>
+  <span class="tree-dir">mcp/</span>
+    <span class="tree-file">*.json</span>
+    <span class="tree-file">index.json</span>
+  <span class="tree-dir">postman/</span>
+    <span class="tree-file">collection.json</span>
+  <span class="tree-file">guide.md</span>
+  <span class="tree-file">openapi.json</span></code></pre>
+          <p class="tree-note">Shown before generate so the product is obvious. Same emitters as the SpecPack CLI.</p>
+        </aside>
       </div>
+    </main>
 
-      <div class="row">
-        <label class="file-btn">Choose file
-          <input id="file" type="file" accept=".json,.yaml,.yml,application/json,text/yaml,text/x-yaml" />
-        </label>
-        <button id="generate" type="button" disabled>Generate pack</button>
-        <span id="chosen" class="hint" style="margin:0"></span>
-      </div>
-
-      <details id="pasteDetails">
-        <summary>Or paste OpenAPI JSON / YAML</summary>
-        <textarea id="paste" placeholder='{"openapi":"3.0.3","info":{"title":"…"}, …}' spellcheck="false"></textarea>
-      </details>
-
-      <p class="hint">Same deterministic emitters as the SpecPack CLI. Hard caps fail closed:</p>
-      <div class="caps">
-        <span class="cap">≤ 200 KiB</span>
-        <span class="cap">≤ 80 operations</span>
-        <span class="cap">≤ 100 paths</span>
-        <span class="cap">OpenAPI 3.x</span>
-      </div>
-
-      <div id="error" class="msg error" role="alert"></div>
-      <div id="success" class="msg success" role="status"></div>
-    </div>
-
-    <footer>
-      <strong>What’s in a SpecPack?</strong>
-      README.md · llms.txt · mcp/* · postman/collection.json · guide.md · openapi.json
-      <br />
-      Free static demo — no checkout, no paid APIs, no Node on the host.
-      Generation runs client-side; nothing is uploaded to a server.
-      <br />
-      Branding: <strong>SpecPack</strong> · slug <code>openapi-agentpack</code>
-      (no live public domain claimed).
+    <footer class="foot">
+      <span><strong>SpecPack</strong> · slug <code>openapi-agentpack</code></span>
+      <span>Static client-side demo — no checkout, no paid APIs, nothing uploaded.</span>
     </footer>
   </div>
 
