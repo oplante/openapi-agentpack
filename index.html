@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SpecPack — OpenAPI → agent pack</title>
+  <meta name="description" content="SpecPack (openapi-agentpack): OpenAPI 3.x → agent-ready ZIP. Free static demo — runs entirely in your browser." />
+  <meta name="generator" content="SpecPack openapi-agentpack" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">SP</div>
+      <div>
+        <h1>SpecPack</h1>
+      </div>
+    </div>
+    <p class="lead"><strong>OpenAPI → agent pack.</strong> Make your API agent-ready in one click — entirely in your browser.</p>
+    <div class="slug">Product slug: <code>openapi-agentpack</code> · static free demo (no server)</div>
+
+    <div class="card">
+      <div id="drop" class="drop" tabindex="0" role="button" aria-label="Drop OpenAPI file here">
+        <strong>Drop OpenAPI JSON or YAML here</strong>
+        <span>or use the file picker / paste below</span>
+      </div>
+
+      <div class="row">
+        <label class="file-btn">Choose file
+          <input id="file" type="file" accept=".json,.yaml,.yml,application/json,text/yaml,text/x-yaml" />
+        </label>
+        <button id="generate" type="button" disabled>Generate pack</button>
+        <span id="chosen" class="hint" style="margin:0"></span>
+      </div>
+
+      <details id="pasteDetails">
+        <summary>Or paste OpenAPI JSON / YAML</summary>
+        <textarea id="paste" placeholder='{"openapi":"3.0.3","info":{"title":"…"}, …}' spellcheck="false"></textarea>
+      </details>
+
+      <p class="hint">Same deterministic emitters as the SpecPack CLI. Hard caps fail closed:</p>
+      <div class="caps">
+        <span class="cap">≤ 200 KiB</span>
+        <span class="cap">≤ 80 operations</span>
+        <span class="cap">≤ 100 paths</span>
+        <span class="cap">OpenAPI 3.x</span>
+      </div>
+
+      <div id="error" class="msg error" role="alert"></div>
+      <div id="success" class="msg success" role="status"></div>
+    </div>
+
+    <footer>
+      <strong>What’s in a SpecPack?</strong>
+      README.md · llms.txt · mcp/* · postman/collection.json · guide.md · openapi.json
+      <br />
+      Free static demo — no checkout, no paid APIs, no Node on the host.
+      Generation runs client-side; nothing is uploaded to a server.
+      <br />
+      Branding: <strong>SpecPack</strong> · slug <code>openapi-agentpack</code>
+      (no live public domain claimed).
+    </footer>
+  </div>
+
+  <script src="specpack.bundle.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
